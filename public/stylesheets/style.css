@@ -6,3 +6,36 @@ body {
 a {
   color: #00B7FF;
 }
+
+.costumeAttr {
+  background-color: goldenrod;
+  width: 200px;
+  margin: 5px;
+  text-align: center;
+  color: rgb(196, 188, 188);
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+#myTitle{
+  color:brown;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: underline;
+}
+.values{
+  margin-right: 3px;
+  margin-bottom: 0;
+  padding: 10px;
+  justify-content:center;
+  font-weight: bold;
+  border-bottom: 2px solid orangered;
+  border-left: 2px solid orangered;
+  background-color:blanchedalmond;
+  border-radius: 1px;
+}
+.values:hover{
+  background-color: rgb(109, 136, 136);
+  color: red;
+}
+
