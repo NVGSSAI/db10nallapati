@@ -2,42 +2,44 @@ extends layout
 
 block content
   h1= title
+  if(toShow == null)
+    h2 No instance found for updating 
+  else
+    - let appleid = toShow._id
+    - let applename = toShow.applename
+    - let price = toShow.price
+    - let color = toShow.color
+    
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{appleid}
+    - let actionid = "/resource/apples/" + appleid
+    form(id='appleForm', action= actionid, method="PUT")
+        div.form-group
+            label.costumeAttr(for='applename') Apple name
+            input#applename(type='text', name='applename', value= applename )
+        div.form-group
+            label.costumeAttr(for='price') Apple price
+            input#size(type='number', name='price', value= price )
+        div.form-group
+            label.costumeAttr(for='color') Apple color
+            input#cost(type='text', name='color', value= color )
+        input(type="submit")
 
-  - let appleid = toShow._id
-  - let applename = toShow.applename
-  - let price = toShow.price
-  - let color = toShow.color
-  
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{appleid}
-  - let actionid = "/resource/apples/" + appleid
-  form(id='appleForm', action= actionid, method="PUT")
-    div.form-group
-        label.costumeAttr(for='applename') Apple name
-        input#applename(type='text', name='applename', value= applename )
-    div.form-group
-        label.costumeAttr(for='price') Apple price
-        input#size(type='number', name='price', value= price )
-    div.form-group
-        label.costumeAttr(for='color') Apple color
-        input#cost(type='text', name='color', value= color )
-    input(type="submit")
-
-  script.
-    document.forms['CostumeForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        alert("Update failed " + error )
-      });
-    });
+    script.
+        document.forms['CostumeForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Update succeded")
+            // TODO handle body
+        }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error )
+        });
+        });
