@@ -33,7 +33,7 @@ var apple = require("./models/apple");
 // We can seed the collection if needed on server start
 async function recreateDB() {
   // Delete everything
-  // await apple.deleteMany();
+   await apple.deleteMany();
   let instance1 = new apple({ applename:"Honey crisp",color:"red",price:40});
   instance1.save(function (err, doc) {
     if (err) return console.error(err);

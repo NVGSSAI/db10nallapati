@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  div#error(style:{display:block;}) 
 
   form(id='appleForm', action="/resource/apples", method="POST")
     div.form-group
@@ -23,10 +24,15 @@ block content
         method: 'POST',
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
+         document.getElementById("error").style.display="block"
         return resp.json(); // or resp.text() or whatever the server sends
       }).then((body) => {
-        alert("Save succeded")
-        // TODO handle body
+       if(body.name){
+          document.getElementById("error").innerHTML=`${body.name}  \n ${body.message}\n`;
+          alert("Save Failed")
+        }else{
+           alert("Save succeded")
+        }
       }).catch((error) => {
         // TODO handle error
         alert("Save failed " + error )
